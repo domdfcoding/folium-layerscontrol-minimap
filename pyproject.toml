@@ -27,7 +27,7 @@ base-classifiers = [ "Typing :: Typed",]
 python-versions = [ "3.10", "3.11", "3.12", "3.13",]
 python-implementations = [ "CPython",]
 platforms = [ "Windows", "macOS", "Linux",]
-license-key = "BSD-2-Clause"
+license-key = "BSD-3-Clause"
 package = "folium_layerscontrol_minimap"
 
 [tool.importcheck]
