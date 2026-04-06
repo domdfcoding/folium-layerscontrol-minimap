@@ -59,7 +59,7 @@ folium-layerscontrol-minimap
 .. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/folium-layerscontrol-minimap
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/folium-layerscontrol-minimap/v0.0.0
+.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/folium-layerscontrol-minimap/v0.1.0a1
 	:target: https://github.com/domdfcoding/folium-layerscontrol-minimap/pulse
 	:alt: GitHub commits since tagged version
 

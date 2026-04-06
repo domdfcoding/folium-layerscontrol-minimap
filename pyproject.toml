@@ -4,7 +4,7 @@ build-backend = "whey"
 
 [project]
 name = "folium-layerscontrol-minimap"
-version = "0.0.0"
+version = "0.1.0a1"
 description = "Folium addon for leaflet.layerscontrol-minimap"
 readme = "README.rst"
 keywords = []
