@@ -43,12 +43,12 @@ class ToggleMinimapLayerControl(MinimapLayerControl):
 	default_js = MinimapLayerControl.default_js + [
 			(
 					"layerscontrol-minimap-toggle-js",
-					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/L.Control.Layers.Minimap.Toggle.js",
+					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/L.Control.Layers.Minimap.Toggle.min.js",
 					),
 			]
 	default_css = MinimapLayerControl.default_css + [
 			(
 					"layerscontrol-minimap-toggle-css",
-					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/control.layers.minimap.css",
+					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/control.layers.minimap.min.css",
 					),
 			]
