@@ -59,7 +59,7 @@ folium-layercontrols
 .. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/folium-layercontrols
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/folium-layercontrols/v0.1.0a1
+.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/folium-layercontrols/v0.1.0b1
 	:target: https://github.com/domdfcoding/folium-layercontrols/pulse
 	:alt: GitHub commits since tagged version
 

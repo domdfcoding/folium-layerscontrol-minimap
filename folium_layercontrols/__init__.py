@@ -31,7 +31,7 @@ Folium addon for leaflet.layerscontrol-minimap .
 __author__: str = "Dominic Davis-Foster"
 __copyright__: str = "2026 Dominic Davis-Foster"
 __license__: str = "BSD-2-Clause License"
-__version__: str = "0.1.0a1"
+__version__: str = "0.1.0b1"
 __email__: str = "dominic@davis-foster.co.uk"
 
 # TODO: combine minimap with grouped control

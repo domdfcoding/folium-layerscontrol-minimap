@@ -4,7 +4,7 @@ build-backend = "whey"
 
 [project]
 name = "folium-layercontrols"
-version = "0.1.0a1"
+version = "0.1.0b1"
 description = "Folium addon for custom layer controls"
 readme = "README.rst"
 keywords = []
