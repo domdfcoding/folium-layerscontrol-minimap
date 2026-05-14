@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-#  __init__.py
+#  toggle.py
 """
 Customised minimap layer control that is shown/hidden on click rather than mouseover.
 """
@@ -29,7 +29,8 @@ Customised minimap layer control that is shown/hidden on click rather than mouse
 #
 
 # this package
-from folium_layerscontrol_minimap import MinimapLayerControl, __version__
+from folium_layerscontrol_minimap import __version__
+from folium_layerscontrol_minimap.minimap import MinimapLayerControl
 
 __all__ = ["ToggleMinimapLayerControl"]
 
