@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 #
-#  __init__.py
+#  toggle.py
 """
-Folium addon for leaflet.layerscontrol-minimap .
+Customised minimap layer control that is shown/hidden on click rather than mouseover.
 """
 #
 #  Copyright © 2026 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -28,11 +28,28 @@ Folium addon for leaflet.layerscontrol-minimap .
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-__author__: str = "Dominic Davis-Foster"
-__copyright__: str = "2026 Dominic Davis-Foster"
-__license__: str = "BSD-2-Clause License"
-__version__: str = "0.1.0a1"
-__email__: str = "dominic@davis-foster.co.uk"
+# this package
+from folium_layerscontrol_minimap import __version__
+from folium_layerscontrol_minimap.minimap import MinimapLayerControl
 
-# TODO: combine minimap with grouped control
-# TODO: styling for grouped and "normal" toggle controls to keep button (maybe as an option?)
+__all__ = ["ToggleMinimapLayerControl"]
+
+
+class ToggleMinimapLayerControl(MinimapLayerControl):
+	"""
+	Customised minimap layer control that is shown/hidden on click rather than mouseover.
+	"""
+
+	control_class_name = "new L.Control.Layers.MinimapToggle"
+	default_js = MinimapLayerControl.default_js + [
+			(
+					"layerscontrol-minimap-toggle-js",
+					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/L.Control.Layers.Minimap.Toggle.min.js",
+					),
+			]
+	default_css = MinimapLayerControl.default_css + [
+			(
+					"layerscontrol-minimap-toggle-css",
+					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/control.layers.minimap.min.css",
+					),
+			]

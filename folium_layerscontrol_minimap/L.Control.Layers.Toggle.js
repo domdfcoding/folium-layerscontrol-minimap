@@ -1,5 +1,6 @@
-// Adapted from https://github.com/jieter/leaflet.layerscontrol-minimap
-// Copyright (c) 2013, Jan Pieter Waagmeester
+// Adapted from https://github.com/Leaflet/Leaflet
+// Copyright (c) 2010-2023, Volodymyr Agafonkin
+// Copyright (c) 2010-2011, CloudMade
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -22,41 +23,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-/*
- * Leaflet.layerscontrol-minimap-toggle
- *
- * Layers control with synced minimaps and visibility toggle for Leaflet.
- *
- * Dominic Davis-Foster <dominic@davis-foster.co.uk>
- */
-
-L.Control.Layers.MinimapToggle = L.Control.Layers.Minimap.extend({
+L.Control.Layers.Toggle = L.Control.Layers.extend({
 	_initLayout: function() {
-		L.Control.Layers.Minimap.prototype._initLayout.call(this);
+		L.Control.Layers.prototype._initLayout.call(this);
 		L.DomEvent.off(this._container, 'mouseleave', this.collapse, this);
 		L.DomEvent.off(this._container, 'mouseenter', this._expandSafely, this);
-
-		L.DomEvent.off(this._layersLink);
-		L.DomEvent.on(this._layersLink, {
-			keydown: function(e) {
-				if (e.keyCode === 13) {
-					this._expandSafely();
-				}
-			},
-			click: function(e) {
-				console.log('Layer button clicked');
-				L.DomEvent.preventDefault(e);
-				// L.DomEvent.stopPropagation(e);
-				if (!this.isCollapsed()) {
-					this.collapse();
-				} else {
-					this._expandSafely();
-				}
-			},
-		}, this);
 	},
 });
 
-L.control.layers.minimap.toggle = function(baseLayers, overlays, options) {
-	return new L.Control.Layers.MinimapToggle(baseLayers, overlays, options);
+L.control.layers.toggle = function(baseLayers, overlays, options) {
+	return new L.Control.Layers.Toggle(baseLayers, overlays, options);
 };

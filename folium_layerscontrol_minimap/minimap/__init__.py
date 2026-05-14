@@ -28,11 +28,59 @@ Folium addon for leaflet.layerscontrol-minimap .
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-__author__: str = "Dominic Davis-Foster"
-__copyright__: str = "2026 Dominic Davis-Foster"
-__license__: str = "BSD-2-Clause License"
-__version__: str = "0.1.0a1"
-__email__: str = "dominic@davis-foster.co.uk"
+# 3rd party
+from folium import LayerControl
+from folium.elements import JSCSSMixin
+from folium.template import Template
 
-# TODO: combine minimap with grouped control
-# TODO: styling for grouped and "normal" toggle controls to keep button (maybe as an option?)
+__all__ = ["MinimapLayerControl"]
+
+
+class MinimapLayerControl(JSCSSMixin, LayerControl):
+	"""
+	Leaflet layer control widget which displays minimap previews of the basemap layers.
+	"""
+
+	control_class_name = "new L.Control.Layers.Minimap"
+
+	default_js = [
+			(
+					"layerscontrol-minimap-js",
+					"https://cdn.jsdelivr.net/npm/leaflet.layerscontrol-minimap@1.0.21/L.Control.Layers.Minimap.min.js",
+					),
+			]
+
+	default_css = [
+			(
+					"layerscontrol-minimap-css",
+					"https://cdn.jsdelivr.net/npm/leaflet.layerscontrol-minimap@1.0.21/control.layers.minimap.min.css",
+					),
+			]
+	_template = Template(
+			"""
+		{% macro script(this,kwargs) %}
+			var {{ this.get_name() }}_layers = {
+				base_layers : {
+					{%- for key, val in this.base_layers.items() %}
+					{{ key|tojson }} : {{val}},
+					{%- endfor %}
+				},
+				overlays :  {
+					{%- for key, val in this.overlays.items() %}
+					{{ key|tojson }} : {{val}},
+					{%- endfor %}
+				},
+			};
+			let {{ this.get_name() }} = {{ this.control_class_name }}(
+				{{ this.get_name() }}_layers.base_layers,
+				{{ this.get_name() }}_layers.overlays,
+				{{ this.options|tojavascript }}
+			).addTo({{this._parent.get_name()}});
+
+			{%- if this.draggable %}
+			new L.Draggable({{ this.get_name() }}.getContainer()).enable();
+			{%- endif %}
+
+		{% endmacro %}
+		""".replace('\t', "    "),
+			)
