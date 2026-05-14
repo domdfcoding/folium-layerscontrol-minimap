@@ -35,7 +35,10 @@ from folium.map import Layer
 from folium.template import Template
 from folium.utilities import TypeJsonValue
 
-__all__ = ["GroupedLayerControl"]
+# this package
+from folium_layerscontrol_minimap import __version__
+
+__all__ = ["GroupedLayerControl", "ToggleGroupedLayerControl"]
 
 
 class GroupedLayerControl(JSCSSMixin, folium.LayerControl):
@@ -54,6 +57,8 @@ class GroupedLayerControl(JSCSSMixin, folium.LayerControl):
 	:param draggable: By default the layer control has a fixed position. Set this argument to :py:obj:`True` to allow dragging the control around.
 	:param \*\*kwargs: Additional keyword arguments for the javascript class.
 	"""
+
+	control_class_name = "new L.Control.GroupedLayers"
 
 	_template = Template(
 			"""
@@ -75,7 +80,7 @@ class GroupedLayerControl(JSCSSMixin, folium.LayerControl):
 				},
 			};
 
-			let {{ this.get_name() }} = new L.Control.GroupedLayers(
+			let {{ this.get_name() }} = {{ this.control_class_name }}(
 				{{ this.get_name() }}_layers.base_layers,
 				{{ this.get_name() }}_layers.overlays,
 				{{ this.options|tojavascript }}
@@ -120,3 +125,18 @@ class GroupedLayerControl(JSCSSMixin, folium.LayerControl):
 				)
 		self._name = "GroupedLayerControl"
 		self.groups = groups
+
+
+class ToggleGroupedLayerControl(GroupedLayerControl):
+	r"""
+	Customised GroupedLayerControl that is shown/hidden on click rather than mouseover.
+	"""
+
+	control_class_name = "new L.Control.GroupedLayersToggle"
+
+	default_js = GroupedLayerControl.default_js + [
+			(
+					"groupedlayercontrol-toggle-js",
+					f"https://cdn.jsdelivr.net/gh/domdfcoding/folium-layerscontrol-minimap@v{__version__}/folium_layerscontrol_minimap/leaflet.groupedlayercontrol.toggle.js",
+					),
+			]

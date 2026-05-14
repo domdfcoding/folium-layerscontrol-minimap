@@ -40,7 +40,7 @@ class ToggleMinimapLayerControl(MinimapLayerControl):
 	Customised minimap layer control that is shown/hidden on click rather than mouseover.
 	"""
 
-	control_class_name = "L.control.layers.minimap.toggle"
+	control_class_name = "new L.Control.Layers.MinimapToggle"
 	default_js = MinimapLayerControl.default_js + [
 			(
 					"layerscontrol-minimap-toggle-js",

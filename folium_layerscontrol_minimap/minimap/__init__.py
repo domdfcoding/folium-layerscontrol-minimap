@@ -41,7 +41,7 @@ class MinimapLayerControl(JSCSSMixin, LayerControl):
 	Leaflet layer control widget which displays minimap previews of the basemap layers.
 	"""
 
-	control_class_name = "L.control.layers.minimap"
+	control_class_name = "new L.Control.Layers.Minimap"
 
 	default_js = [
 			(
@@ -58,29 +58,29 @@ class MinimapLayerControl(JSCSSMixin, LayerControl):
 			]
 	_template = Template(
 			"""
-        {% macro script(this,kwargs) %}
-            var {{ this.get_name() }}_layers = {
-                base_layers : {
-                    {%- for key, val in this.base_layers.items() %}
-                    {{ key|tojson }} : {{val}},
-                    {%- endfor %}
-                },
-                overlays :  {
-                    {%- for key, val in this.overlays.items() %}
-                    {{ key|tojson }} : {{val}},
-                    {%- endfor %}
-                },
-            };
-            let {{ this.get_name() }} = {{ this.control_class_name }}(
-                {{ this.get_name() }}_layers.base_layers,
-                {{ this.get_name() }}_layers.overlays,
-                {{ this.options|tojavascript }}
-            ).addTo({{this._parent.get_name()}});
+		{% macro script(this,kwargs) %}
+			var {{ this.get_name() }}_layers = {
+				base_layers : {
+					{%- for key, val in this.base_layers.items() %}
+					{{ key|tojson }} : {{val}},
+					{%- endfor %}
+				},
+				overlays :  {
+					{%- for key, val in this.overlays.items() %}
+					{{ key|tojson }} : {{val}},
+					{%- endfor %}
+				},
+			};
+			let {{ this.get_name() }} = {{ this.control_class_name }}(
+				{{ this.get_name() }}_layers.base_layers,
+				{{ this.get_name() }}_layers.overlays,
+				{{ this.options|tojavascript }}
+			).addTo({{this._parent.get_name()}});
 
-            {%- if this.draggable %}
-            new L.Draggable({{ this.get_name() }}.getContainer()).enable();
-            {%- endif %}
+			{%- if this.draggable %}
+			new L.Draggable({{ this.get_name() }}.getContainer()).enable();
+			{%- endif %}
 
-        {% endmacro %}
-        """,
+		{% endmacro %}
+		""".replace('\t', "    "),
 			)
